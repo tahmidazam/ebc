@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
-import { Nav } from "@/components/nav";
 
 export const metadata: Metadata = {
   title: "EBC",
@@ -31,28 +30,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <main
-            style={{
-              height: "calc(100vh - env(safe-area-inset-top) - 68px)",
-              paddingTop: "calc(env(safe-area-inset-top) + 68px)",
-            }}
-          >
-            <Nav />
-
-            <h1
-              className="text-3xl font-semibold tracking-tight"
-              style={{
-                paddingLeft:
-                  "calc(env(safe-area-inset-left) + 4 * var(--spacing))",
-                paddingRight:
-                  "calc(env(safe-area-inset-right) + 4 * var(--spacing))",
-              }}
-            >
-              EBC Intranet
-            </h1>
-
-            {children}
-          </main>
+          {children}
         </ThemeProvider>
       </body>
     </html>

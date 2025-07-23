@@ -5,6 +5,7 @@ import { useState } from "react";
 import { CycleThemeButton } from "./cycle-theme-button";
 import { Separator } from "./ui/separator";
 import { FeedbackButton } from "./feedback-button";
+import { LogoutButton } from "./logout-button";
 
 export function Nav() {
   const { scrollY } = useScroll();
@@ -25,9 +26,13 @@ export function Nav() {
           paddingRight: "calc(env(safe-area-inset-right) + 4 * var(--spacing))",
         }}
       >
-        <CycleThemeButton />
+        <div className="flex gap-2 items-center">
+          <CycleThemeButton />
 
-        <FeedbackButton />
+          <FeedbackButton />
+        </div>
+
+        <LogoutButton />
 
         <div className="absolute left-0 right-0 flex justify-center pointer-events-none">
           <motion.h1
