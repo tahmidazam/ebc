@@ -13,7 +13,7 @@ export function Card({ label, href }: { label: string; href: string }) {
         backgroundPosition: "center",
       }}
     >
-      <h2 className="text-white font-medium">{label}</h2>
+      <h2 className="text-white text-sm font-medium">{label}</h2>
     </Link>
   );
 }

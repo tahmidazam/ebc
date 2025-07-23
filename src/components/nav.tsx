@@ -17,7 +17,13 @@ export function Nav() {
 
   return (
     <nav className="flex flex-col pt-[env(safe-area-inset-top)] fixed w-full top-0 bg-background z-50">
-      <div className="flex items-center p-4">
+      <div
+        className="flex items-center py-4"
+        style={{
+          paddingLeft: "calc(env(safe-area-inset-left) + 4 * var(--spacing))",
+          paddingRight: "calc(env(safe-area-inset-right) + 4 * var(--spacing))",
+        }}
+      >
         <CycleThemeButton />
         <div className="absolute left-0 right-0 flex justify-center pointer-events-none">
           <motion.h1

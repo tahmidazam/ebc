@@ -39,7 +39,15 @@ export default function RootLayout({
           >
             <Nav />
 
-            <h1 className="text-3xl font-semibold tracking-tight pl-4">
+            <h1
+              className="text-3xl font-semibold tracking-tight"
+              style={{
+                paddingLeft:
+                  "calc(env(safe-area-inset-left) + 4 * var(--spacing))",
+                paddingRight:
+                  "calc(env(safe-area-inset-right) + 4 * var(--spacing))",
+              }}
+            >
               EBC Intranet
             </h1>
 
