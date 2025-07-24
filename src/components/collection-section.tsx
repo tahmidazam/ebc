@@ -82,7 +82,7 @@ export function CollectionSection({ collection }: { collection: Collection }) {
                 <DropdownMenuContent align="end" className="w-48">
                   <DropdownMenuItem
                     disabled={
-                      pinnedHrefs.length >= 4 &&
+                      pinnedHrefs.length >= 6 &&
                       !pinnedHrefs.includes(labelledHref.href)
                     }
                     onClick={() => togglePinHref(labelledHref.href)}

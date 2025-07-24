@@ -6,6 +6,7 @@ import { CycleThemeButton } from "./cycle-theme-button";
 import { Separator } from "./ui/separator";
 import { FeedbackButton } from "./feedback-button";
 import { LogoutButton } from "./logout-button";
+import { HelpButton } from "./help-button";
 
 export function Nav({ title, subtitle }: { title: string; subtitle: string }) {
   const { scrollY } = useScroll();
@@ -28,8 +29,8 @@ export function Nav({ title, subtitle }: { title: string; subtitle: string }) {
       >
         <div className="flex gap-2 items-center">
           <CycleThemeButton />
-
           <FeedbackButton />
+          <HelpButton />
         </div>
 
         <LogoutButton />
