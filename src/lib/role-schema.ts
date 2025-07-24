@@ -1,5 +1,5 @@
 import z from "zod";
-import { collectionSchema } from "./collection";
+import { collectionSchema } from "./collection-schema";
 
 export const roleSchema = z.object({
   title: z.string(),

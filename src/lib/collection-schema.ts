@@ -1,5 +1,5 @@
 import z from "zod";
-import { labelledHrefSchema } from "./labelled-href";
+import { labelledHrefSchema } from "./labelled-href-schema";
 
 export const collectionSchema = z.object({
   title: z.string(),

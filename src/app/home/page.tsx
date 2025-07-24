@@ -1,6 +1,16 @@
 import { Card } from "@/components/card";
+import { getRole } from "@/lib/get-role";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
-export default function Home() {
+export default async function Home() {
+  const role = await getRole();
+
+  if (!role) {
+    (await cookies()).delete("code");
+    redirect("/auth");
+  }
+
   return (
     <div
       className="grid grid-cols-2 gap-4 py-4"

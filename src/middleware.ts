@@ -2,10 +2,10 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 export function middleware(request: NextRequest) {
-  const role = request.cookies.get("role")?.value;
+  const code = request.cookies.get("code")?.value;
   const { pathname } = request.nextUrl;
 
-  const isAuthenticated = role === "true";
+  const isAuthenticated = code !== undefined && code !== "";
 
   if (!isAuthenticated) {
     return NextResponse.redirect(new URL("/auth", request.url));

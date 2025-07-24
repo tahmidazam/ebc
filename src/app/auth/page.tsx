@@ -6,25 +6,23 @@ import {
   InputOTPGroup,
   InputOTPSlot,
 } from "@/components/ui/input-otp";
-import { useIntranetStore } from "@/lib/store";
 import { REGEXP_ONLY_DIGITS } from "input-otp";
 import { HandshakeIcon, Loader2Icon } from "lucide-react";
 import { motion } from "motion/react";
-import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function Auth() {
   const router = useRouter();
   const [code, setCode] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const setRole = useIntranetStore((state) => state.setRole);
 
   const continueAction = async () => {
     setLoading(true);
     setError("");
 
-    const res = await fetch("/api/access-code", {
+    const res = await fetch("/api/verify-access-code", {
       method: "POST",
       body: JSON.stringify({ code }),
       headers: {
@@ -41,7 +39,6 @@ export default function Auth() {
       return;
     }
 
-    setRole(data.data);
     setLoading(false);
     setCode("");
     setError("");

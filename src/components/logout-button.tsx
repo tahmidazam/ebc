@@ -2,7 +2,6 @@
 
 import { LogOutIcon } from "lucide-react";
 import { Button } from "./ui/button";
-import { useIntranetStore } from "@/lib/store";
 import { useRouter } from "next/navigation";
 import {
   AlertDialog,
@@ -18,10 +17,9 @@ import {
 
 export function LogoutButton() {
   const router = useRouter();
-  const logout = useIntranetStore((state) => state.logout);
 
   const logoutAction = () => {
-    logout();
+    document.cookie = "code=; path=/;";
     router.push("/auth");
   };
 
