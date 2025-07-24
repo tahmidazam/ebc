@@ -13,7 +13,7 @@ export function Nav({ title, subtitle }: { title: string; subtitle: string }) {
   const [showTitle, setShowTitle] = useState(false);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
-    setShowSeparator(latest > 52);
+    setShowSeparator(latest > 70);
     setShowTitle(latest > 24);
   });
 

@@ -1,5 +1,6 @@
 import { CollectionSection } from "@/components/collection-section";
 import { Nav } from "@/components/nav";
+import { Separator } from "@/components/ui/separator";
 import { getRole } from "@/lib/get-role";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
@@ -32,6 +33,7 @@ export default async function Home() {
       </div>
 
       <div className="flex flex-col py-4">
+        <Separator />
         {role.collections.map((collection) => {
           return (
             <CollectionSection collection={collection} key={collection.title} />
