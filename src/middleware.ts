@@ -3,11 +3,16 @@ import type { NextRequest } from "next/server";
 
 export function middleware(request: NextRequest) {
   const role = request.cookies.get("role")?.value;
+  const { pathname } = request.nextUrl;
 
-  if (role !== "true") {
-    const url = request.nextUrl.clone();
-    url.pathname = "/auth";
-    return NextResponse.redirect(url);
+  const isAuthenticated = role === "true";
+
+  if (!isAuthenticated) {
+    return NextResponse.redirect(new URL("/auth", request.url));
+  }
+
+  if (pathname === "/") {
+    return NextResponse.redirect(new URL("/home", request.url));
   }
 
   return NextResponse.next();
