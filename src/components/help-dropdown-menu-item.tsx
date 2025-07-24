@@ -8,15 +8,15 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "./ui/alert-dialog";
-import { Button } from "./ui/button";
+import { DropdownMenuItem } from "./ui/dropdown-menu";
 
-export function HelpButton() {
+export function HelpDropdownMenuItem() {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button size="icon" variant="outline">
-          <HelpCircleIcon />
-        </Button>
+        <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
+          Help <HelpCircleIcon className="ml-auto size-4" />
+        </DropdownMenuItem>
       </AlertDialogTrigger>
 
       <AlertDialogContent>

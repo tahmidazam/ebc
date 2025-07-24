@@ -1,7 +1,6 @@
 "use client";
 
 import { LogOutIcon } from "lucide-react";
-import { Button } from "./ui/button";
 import { useRouter } from "next/navigation";
 import {
   AlertDialog,
@@ -14,8 +13,9 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "./ui/alert-dialog";
+import { DropdownMenuItem } from "./ui/dropdown-menu";
 
-export function LogoutButton() {
+export function LogoutDropdownMenuItem() {
   const router = useRouter();
 
   const logoutAction = () => {
@@ -26,9 +26,9 @@ export function LogoutButton() {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button size="icon" variant="outline">
-          <LogOutIcon />
-        </Button>
+        <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
+          Logout <LogOutIcon className="ml-auto size-4" />
+        </DropdownMenuItem>
       </AlertDialogTrigger>
 
       <AlertDialogContent>

@@ -1,11 +1,11 @@
 "use client";
 
+import { LaptopMinimalIcon, MoonIcon, SunIcon } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
-import { Button } from "./ui/button";
-import { SunIcon, MoonIcon, LaptopMinimalIcon } from "lucide-react";
+import { DropdownMenuItem } from "./ui/dropdown-menu";
 
-export function CycleThemeButton() {
+export function CycleThemeDropdownMenuItem() {
   const { theme, setTheme, themes } = useTheme();
   const [mounted, setMounted] = useState(false);
 
@@ -22,14 +22,14 @@ export function CycleThemeButton() {
   };
 
   const Icon = {
-    light: <SunIcon className="w-4 h-4" />,
-    dark: <MoonIcon className="w-4 h-4" />,
-    system: <LaptopMinimalIcon className="w-4 h-4" />,
+    light: <SunIcon className="ml-auto size-4" />,
+    dark: <MoonIcon className="ml-auto size-4" />,
+    system: <LaptopMinimalIcon className="ml-auto size-4" />,
   }[theme || "system"];
 
   return (
-    <Button variant="outline" size="icon" onClick={nextTheme}>
-      {Icon}
-    </Button>
+    <DropdownMenuItem onClick={nextTheme} onSelect={(e) => e.preventDefault()}>
+      Cycle Theme{Icon}
+    </DropdownMenuItem>
   );
 }
