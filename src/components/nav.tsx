@@ -7,7 +7,7 @@ import { Separator } from "./ui/separator";
 import { FeedbackButton } from "./feedback-button";
 import { LogoutButton } from "./logout-button";
 
-export function Nav() {
+export function Nav({ title, subtitle }: { title: string; subtitle: string }) {
   const { scrollY } = useScroll();
   const [showSeparator, setShowSeparator] = useState(false);
   const [showTitle, setShowTitle] = useState(false);
@@ -35,13 +35,14 @@ export function Nav() {
         <LogoutButton />
 
         <div className="absolute left-0 right-0 flex justify-center pointer-events-none">
-          <motion.h1
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: showTitle ? 1 : 0 }}
-            className="font-medium"
+            className="flex flex-col items-center"
           >
-            EBC Intranet
-          </motion.h1>
+            <h1 className="font-medium">{title}</h1>
+            <p className="text-muted-foreground text-sm">{subtitle}</p>
+          </motion.div>
         </div>
       </div>
 

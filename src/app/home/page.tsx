@@ -1,4 +1,5 @@
 import { Card } from "@/components/card";
+import { Nav } from "@/components/nav";
 import { getRole } from "@/lib/get-role";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
@@ -12,17 +13,37 @@ export default async function Home() {
   }
 
   return (
-    <div
-      className="grid grid-cols-2 gap-4 py-4"
+    <main
       style={{
-        paddingLeft: "calc(env(safe-area-inset-left) + 4 * var(--spacing))",
-        paddingRight: "calc(env(safe-area-inset-right) + 4 * var(--spacing))",
+        height: "calc(100vh - env(safe-area-inset-top) - 68px)",
+        paddingTop: "calc(env(safe-area-inset-top) + 68px)",
       }}
     >
-      <Card
-        label="Summer Training Log"
-        href="googlesheets://docs.google.com/spreadsheets/d/1Qnym4-vOcVDyV2yax6wfX5P2iY9ILoqRNxXGoT_GVaI/edit"
-      />
-    </div>
+      <Nav title="EBC Intranet" subtitle={role.title} />
+
+      <div
+        className=""
+        style={{
+          paddingLeft: "calc(env(safe-area-inset-left) + 4 * var(--spacing))",
+          paddingRight: "calc(env(safe-area-inset-right) + 4 * var(--spacing))",
+        }}
+      >
+        <h1 className="text-2xl font-semibold tracking-tight">EBC Intranet</h1>
+        <p className="text-muted-foreground">{role.title}</p>
+      </div>
+
+      <div
+        className="grid grid-cols-2 gap-4 py-4"
+        style={{
+          paddingLeft: "calc(env(safe-area-inset-left) + 4 * var(--spacing))",
+          paddingRight: "calc(env(safe-area-inset-right) + 4 * var(--spacing))",
+        }}
+      >
+        <Card
+          label="Summer Training Log"
+          href="googlesheets://docs.google.com/spreadsheets/d/1Qnym4-vOcVDyV2yax6wfX5P2iY9ILoqRNxXGoT_GVaI/edit"
+        />
+      </div>
+    </main>
   );
 }
