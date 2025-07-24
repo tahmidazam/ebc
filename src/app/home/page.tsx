@@ -1,5 +1,6 @@
 import { CollectionSection } from "@/components/collection-section";
 import { Nav } from "@/components/nav";
+import { PinGrid } from "@/components/pin-grid";
 import { Separator } from "@/components/ui/separator";
 import { getRole } from "@/lib/get-role";
 import { cookies } from "next/headers";
@@ -32,13 +33,20 @@ export default async function Home() {
         <p className="text-muted-foreground">{role.title}</p>
       </div>
 
-      <div className="flex flex-col py-4">
-        <Separator />
-        {role.collections.map((collection) => {
-          return (
-            <CollectionSection collection={collection} key={collection.title} />
-          );
-        })}
+      <div className="flex flex-col gap-4 py-4">
+        <PinGrid collections={role.collections} />
+
+        <div className="flex flex-col">
+          <Separator />
+          {role.collections.map((collection) => {
+            return (
+              <CollectionSection
+                collection={collection}
+                key={collection.title}
+              />
+            );
+          })}
+        </div>
       </div>
     </main>
   );
