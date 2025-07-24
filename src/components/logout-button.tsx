@@ -37,7 +37,7 @@ export function LogoutButton() {
         <AlertDialogHeader>
           <AlertDialogTitle>Confirm Log Out</AlertDialogTitle>
           <AlertDialogDescription>
-            You'll need an access code to log back in.
+            You&apos;ll need an access code to log back in.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>

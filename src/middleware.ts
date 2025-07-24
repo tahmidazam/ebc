@@ -4,8 +4,6 @@ import type { NextRequest } from "next/server";
 export function middleware(request: NextRequest) {
   const role = request.cookies.get("role")?.value;
 
-  console.log("Role cookie:", role);
-
   if (role !== "true") {
     const url = request.nextUrl.clone();
     url.pathname = "/auth";

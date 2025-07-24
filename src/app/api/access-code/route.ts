@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 import encryptedDb from "@/../public/db.json";
 import z from "zod";
 import { roleSchema } from "@/lib/role";
+import { collectionSchema } from "@/lib/collection";
 
 const codeSchema = z
   .string()
@@ -16,7 +17,7 @@ export async function POST(req: Request) {
       data: string;
     },
     keyHex: string
-  ): Record<string, any> {
+  ): Record<string, unknown> {
     const key = Buffer.from(keyHex, "hex");
 
     if (key.length !== 32) {
@@ -32,7 +33,7 @@ export async function POST(req: Request) {
 
     const decrypted = Buffer.concat([decipher.update(data), decipher.final()]);
 
-    return JSON.parse(decrypted.toString("utf8"));
+    return JSON.parse(decrypted.toString("utf8")) as Record<string, unknown>;
   }
 
   const { code } = await req.json();
@@ -58,17 +59,37 @@ export async function POST(req: Request) {
   try {
     const db = decryptObject(encryptedDb, secretKey);
 
-    const role = db.roles[parsedCode.data];
+    const dbSchema = z.object({
+      collections: z.array(collectionSchema),
+      roles: z.record(
+        z.string(),
+        z.object({
+          title: z.string(),
+          collections: z.array(z.string()),
+        })
+      ),
+    });
+    const parsedDb = dbSchema.safeParse(db);
 
-    if (!role) {
+    if (!parsedDb.success) {
+      return NextResponse.json(
+        { success: false, error: "Invalid database structure" },
+        { status: 500 }
+      );
+    }
+
+    if (!Object.keys(parsedDb.data.roles).includes(parsedCode.data)) {
       return NextResponse.json(
         { success: false, error: "Invalid access code" },
         { status: 404 }
       );
     }
 
-    const collections = db.collections.filter((collection: { title: string }) =>
-      role.collections.includes(collection.title)
+    const role = parsedDb.data.roles[parsedCode.data];
+
+    const collections = parsedDb.data.collections.filter(
+      (collection: { title: string }) =>
+        role.collections.includes(collection.title)
     );
 
     const result = {
@@ -89,7 +110,7 @@ export async function POST(req: Request) {
       success: true,
       data: result,
     });
-  } catch (error) {
+  } catch {
     return NextResponse.json(
       { success: false, error: "Server configuration error" },
       { status: 500 }

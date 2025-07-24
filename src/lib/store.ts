@@ -1,7 +1,5 @@
 import { Role } from "./role";
 import { create } from "zustand";
-import { subscribeWithSelector } from "zustand/middleware";
-import { shallow } from "zustand/shallow";
 
 interface IntranetState {
   role: Role | undefined;
