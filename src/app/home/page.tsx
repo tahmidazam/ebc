@@ -41,12 +41,3 @@ export default async function Home() {
     </main>
   );
 }
-
-{
-  /* <div className="grid grid-cols-2 gap-4 py-4">
-          <Card
-            label="Summer Training Log"
-            href="googlesheets://docs.google.com/spreadsheets/d/1Qnym4-vOcVDyV2yax6wfX5P2iY9ILoqRNxXGoT_GVaI/edit"
-          />
-        </div> */
-}
