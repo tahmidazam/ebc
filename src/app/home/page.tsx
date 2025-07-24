@@ -1,4 +1,4 @@
-import { Card } from "@/components/card";
+import { CollectionSection } from "@/components/collection-section";
 import { Nav } from "@/components/nav";
 import { getRole } from "@/lib/get-role";
 import { cookies } from "next/headers";
@@ -22,7 +22,6 @@ export default async function Home() {
       <Nav title="EBC Intranet" subtitle={role.title} />
 
       <div
-        className=""
         style={{
           paddingLeft: "calc(env(safe-area-inset-left) + 4 * var(--spacing))",
           paddingRight: "calc(env(safe-area-inset-right) + 4 * var(--spacing))",
@@ -32,18 +31,22 @@ export default async function Home() {
         <p className="text-muted-foreground">{role.title}</p>
       </div>
 
-      <div
-        className="grid grid-cols-2 gap-4 py-4"
-        style={{
-          paddingLeft: "calc(env(safe-area-inset-left) + 4 * var(--spacing))",
-          paddingRight: "calc(env(safe-area-inset-right) + 4 * var(--spacing))",
-        }}
-      >
-        <Card
-          label="Summer Training Log"
-          href="googlesheets://docs.google.com/spreadsheets/d/1Qnym4-vOcVDyV2yax6wfX5P2iY9ILoqRNxXGoT_GVaI/edit"
-        />
+      <div className="flex flex-col py-4">
+        {role.collections.map((collection) => {
+          return (
+            <CollectionSection collection={collection} key={collection.title} />
+          );
+        })}
       </div>
     </main>
   );
+}
+
+{
+  /* <div className="grid grid-cols-2 gap-4 py-4">
+          <Card
+            label="Summer Training Log"
+            href="googlesheets://docs.google.com/spreadsheets/d/1Qnym4-vOcVDyV2yax6wfX5P2iY9ILoqRNxXGoT_GVaI/edit"
+          />
+        </div> */
 }

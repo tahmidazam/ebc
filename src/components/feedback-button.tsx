@@ -1,4 +1,4 @@
-import { LogOutIcon, MessageCircleWarningIcon } from "lucide-react";
+import { MessageCircleWarningIcon } from "lucide-react";
 import Link from "next/link";
 import {
   AlertDialog,
