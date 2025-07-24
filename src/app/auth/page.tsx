@@ -19,11 +19,6 @@ export default function Auth() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const setRole = useIntranetStore((state) => state.setRole);
-  const inputRef = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    if (inputRef.current) inputRef.current.focus();
-  }, []);
 
   const continueAction = async () => {
     setLoading(true);
@@ -43,14 +38,13 @@ export default function Auth() {
       setLoading(false);
       setError(data.error);
       setCode("");
-      setTimeout(() => {
-        if (inputRef.current) inputRef.current.focus();
-      }, 1);
       return;
     }
 
     setRole(data.data);
     setLoading(false);
+    setCode("");
+    setError("");
     router.push("/home");
   };
 
@@ -78,7 +72,6 @@ export default function Auth() {
 
         <div className="flex flex-col items-center gap-4">
           <InputOTP
-            ref={inputRef}
             maxLength={4}
             value={code}
             onChange={setCode}
