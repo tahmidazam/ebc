@@ -1,7 +1,8 @@
 import { Collection } from "@/lib/collection-schema";
-import { PWALink } from "./pwa-link";
 import { useIntranetStore } from "@/lib/store";
+import { motion } from "motion/react";
 import { useShallow } from "zustand/react/shallow";
+import { PWALink } from "./pwa-link";
 
 export function Card({
   href,
@@ -38,19 +39,26 @@ export function Card({
   }
 
   return (
-    <PWALink
-      href={href}
-      className="p-3 rounded-lg h-20 flex flex-col justify-end relative"
-      style={{
-        backgroundImage: `url('/mesh/${pinnedHrefs.indexOf(href)}.jpg')`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
+    <motion.div
+      layout
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
     >
-      <p className="text-white/70 text-xs font-bold uppercase">
-        {match.collectionTitle}
-      </p>
-      <h2 className="text-white text-sm font-medium">{match.label}</h2>
-    </PWALink>
+      <PWALink
+        href={href}
+        className="p-3 rounded-lg h-20 flex flex-col justify-end relative"
+        style={{
+          backgroundImage: `url('/mesh/${pinnedHrefs.indexOf(href)}.jpg')`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        <p className="text-white/70 text-xs font-bold uppercase">
+          {match.collectionTitle}
+        </p>
+        <h2 className="text-white text-sm font-medium">{match.label}</h2>
+      </PWALink>
+    </motion.div>
   );
 }

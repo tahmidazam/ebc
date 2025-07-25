@@ -3,18 +3,12 @@ import { Nav } from "@/components/nav";
 import { PinGrid } from "@/components/pin-grid";
 import { Separator } from "@/components/ui/separator";
 import { getRole } from "@/lib/get-role";
-import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
 export default async function Home() {
-  async function clearCodeCookies() {
-    "use server";
-    (await cookies()).delete("code");
-  }
   const role = await getRole();
 
   if (!role) {
-    await clearCodeCookies();
     redirect("/auth");
   }
 

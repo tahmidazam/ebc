@@ -44,7 +44,7 @@ export function CollectionSection({ collection }: { collection: Collection }) {
               open: { opacity: 1, height: "auto" },
               collapsed: { opacity: 0, height: 0 },
             }}
-            style={{ overflow: "hidden", zIndex: 10 }}
+            style={{ overflow: "hidden" }}
           >
             {collection.labelledHrefs.map((labelledHref) => (
               <LabelledHrefListItem

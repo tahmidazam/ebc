@@ -87,6 +87,7 @@ export default function Auth() {
           variants={BLUR_ENTRY_CHILD_VARIANTS}
         >
           <InputOTP
+            autoFocus
             maxLength={4}
             value={code}
             onChange={setCode}
@@ -106,7 +107,13 @@ export default function Auth() {
         </motion.div>
       </div>
 
-      <div className="w-full flex flex-col gap-4">
+      <div
+        className="w-full fixed bottom-0 left-0 p-4 bg-background flex flex-col gap-4"
+        style={{
+          paddingBottom:
+            "calc(env(safe-area-inset-bottom) + 4 * var(--spacing))",
+        }}
+      >
         <motion.div
           className="flex flex-col items-center gap-2"
           variants={BLUR_ENTRY_CHILD_VARIANTS}

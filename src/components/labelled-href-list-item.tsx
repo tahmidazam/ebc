@@ -1,16 +1,11 @@
 "use client";
 
 import { LabelledHref } from "@/lib/labelled-href-schema";
-import { PWALink } from "./pwa-link";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "./ui/dropdown-menu";
-import { EllipsisIcon, PinOffIcon, PinIcon } from "lucide-react";
 import { useIntranetStore } from "@/lib/store";
+import { cn } from "@/lib/utils";
+import { PinIcon, PinOffIcon } from "lucide-react";
 import { useShallow } from "zustand/react/shallow";
+import { PWALink } from "./pwa-link";
 import { Separator } from "./ui/separator";
 
 export function LabelledHrefListItem({
@@ -25,6 +20,9 @@ export function LabelledHrefListItem({
     useShallow((state) => state.pinnedHrefs)
   );
 
+  const togglePinDisabled =
+    pinnedHrefs.length >= 6 && !pinnedHrefs.includes(labelledHref.href);
+
   return (
     <div key={labelledHref.label} className="flex flex-col">
       <div
@@ -36,33 +34,21 @@ export function LabelledHrefListItem({
       >
         <PWALink href={labelledHref.href}>{labelledHref.label}</PWALink>
 
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <EllipsisIcon className="w-4 h-4" />
-          </DropdownMenuTrigger>
-
-          <DropdownMenuContent align="end" className="w-48">
-            <DropdownMenuItem
-              disabled={
-                pinnedHrefs.length >= 6 &&
-                !pinnedHrefs.includes(labelledHref.href)
-              }
-              onClick={() => togglePinHref(labelledHref.href)}
-            >
-              {pinnedHrefs.includes(labelledHref.href) ? (
-                <>
-                  <span>Unpin</span>
-                  <PinOffIcon className="ml-auto size-4" />
-                </>
-              ) : (
-                <>
-                  <span>Pin</span>
-                  <PinIcon className="ml-auto size-4" />
-                </>
-              )}
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+        <button
+          disabled={togglePinDisabled}
+          onClick={() => togglePinHref(labelledHref.href)}
+          className={cn(togglePinDisabled && "text-muted-foreground")}
+        >
+          {pinnedHrefs.includes(labelledHref.href) ? (
+            <>
+              <PinOffIcon className="size-4" />
+            </>
+          ) : (
+            <>
+              <PinIcon className="size-4" />
+            </>
+          )}
+        </button>
       </div>
 
       <Separator />

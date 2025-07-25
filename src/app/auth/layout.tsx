@@ -8,7 +8,6 @@ export default function AuthLayout({
       className="h-screen"
       style={{
         paddingTop: "calc(env(safe-area-inset-top))",
-        paddingBottom: "calc(env(safe-area-inset-bottom))",
       }}
     >
       {children}
