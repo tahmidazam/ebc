@@ -31,10 +31,10 @@ export default async function Home() {
         <p className="text-muted-foreground">{role.title}</p>
       </div>
 
-      <div className="flex flex-col gap-4 py-4">
+      <div className="flex flex-col pb-4">
         <PinGrid collections={role.collections} />
 
-        <div className="flex flex-col">
+        <div className="flex flex-col pt-4">
           <Separator />
           {role.collections.map((collection) => {
             return (

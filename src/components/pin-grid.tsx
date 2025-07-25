@@ -11,10 +11,12 @@ export function PinGrid({ collections }: { collections: Collection[] }) {
     useShallow((state) => state.pinnedHrefs)
   );
 
+  if (pinnedHrefs.length === 0) return null;
+
   return (
     <motion.div layout>
       <div
-        className="grid grid-cols-2 gap-4"
+        className="grid grid-cols-2 gap-4 pt-4"
         style={{
           paddingLeft: "calc(env(safe-area-inset-left) + 4 * var(--spacing))",
           paddingRight: "calc(env(safe-area-inset-right) + 4 * var(--spacing))",
