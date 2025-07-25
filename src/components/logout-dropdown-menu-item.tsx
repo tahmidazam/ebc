@@ -14,12 +14,18 @@ import {
   AlertDialogTrigger,
 } from "./ui/alert-dialog";
 import { DropdownMenuItem } from "./ui/dropdown-menu";
+import { useIntranetStore } from "@/lib/store";
+import { useShallow } from "zustand/react/shallow";
 
 export function LogoutDropdownMenuItem() {
   const router = useRouter();
+  const resetPinnedHrefs = useIntranetStore(
+    useShallow((state) => state.resetPinnedHrefs)
+  );
 
   const logoutAction = () => {
     document.cookie = "code=; path=/;";
+    resetPinnedHrefs();
     router.push("/auth");
   };
 

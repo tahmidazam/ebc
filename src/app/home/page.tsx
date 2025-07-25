@@ -7,10 +7,14 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
 export default async function Home() {
+  async function clearCodeCookies() {
+    "use server";
+    (await cookies()).delete("code");
+  }
   const role = await getRole();
 
   if (!role) {
-    (await cookies()).delete("code");
+    await clearCodeCookies();
     redirect("/auth");
   }
 

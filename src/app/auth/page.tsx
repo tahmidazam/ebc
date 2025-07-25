@@ -6,6 +6,10 @@ import {
   InputOTPGroup,
   InputOTPSlot,
 } from "@/components/ui/input-otp";
+import {
+  BLUR_ENTRY_CHILD_VARIANTS,
+  BLUR_ENTRY_CONTAINER_VARIANTS,
+} from "@/lib/blur-animation-variants";
 import { REGEXP_ONLY_DIGITS } from "input-otp";
 import { HandshakeIcon, Loader2Icon } from "lucide-react";
 import { motion } from "motion/react";
@@ -46,7 +50,12 @@ export default function Auth() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-between p-4 h-full">
+    <motion.div
+      className="flex flex-col items-center justify-between p-4 h-full"
+      variants={BLUR_ENTRY_CONTAINER_VARIANTS}
+      initial="hidden"
+      animate="show"
+    >
       <div className="flex flex-col items-center gap-16">
         <div className="w-full flex justify-end">
           <motion.div
@@ -58,16 +67,25 @@ export default function Auth() {
         </div>
 
         <div className="flex flex-col items-center gap-2">
-          <h1 className="text-center text-2xl font-semibold tracking-tight">
+          <motion.h1
+            className="text-center text-2xl font-semibold tracking-tight"
+            variants={BLUR_ENTRY_CHILD_VARIANTS}
+          >
             Welcome to the EBC Intranet
-          </h1>
+          </motion.h1>
 
-          <p className="text-center text-muted-foreground text-sm">
+          <motion.p
+            className="text-center text-muted-foreground text-sm"
+            variants={BLUR_ENTRY_CHILD_VARIANTS}
+          >
             Enter your 4-digit access code to continue.
-          </p>
+          </motion.p>
         </div>
 
-        <div className="flex flex-col items-center gap-4">
+        <motion.div
+          className="flex flex-col items-center gap-4"
+          variants={BLUR_ENTRY_CHILD_VARIANTS}
+        >
           <InputOTP
             maxLength={4}
             value={code}
@@ -85,25 +103,30 @@ export default function Auth() {
           </InputOTP>
 
           <p className="text-destructive text-sm">{error}</p>
-        </div>
+        </motion.div>
       </div>
 
       <div className="w-full flex flex-col gap-4">
-        <div className="flex flex-col items-center gap-2">
+        <motion.div
+          className="flex flex-col items-center gap-2"
+          variants={BLUR_ENTRY_CHILD_VARIANTS}
+        >
           <HandshakeIcon className="text-muted-foreground w-5 h-5" />
           <p className="text-muted-foreground text-xs text-center text-balance">
             By continuing, you consent to the use of cookies for authentication
             purposes only.
           </p>
-        </div>
-        <Button
-          className="w-full"
-          onClick={continueAction}
-          disabled={loading || code.length !== 4}
-        >
-          Continue
-        </Button>
+        </motion.div>
+        <motion.div variants={BLUR_ENTRY_CHILD_VARIANTS}>
+          <Button
+            className="w-full"
+            onClick={continueAction}
+            disabled={loading || code.length !== 4}
+          >
+            Continue
+          </Button>
+        </motion.div>
       </div>
-    </div>
+    </motion.div>
   );
 }

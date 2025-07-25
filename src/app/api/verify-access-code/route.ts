@@ -34,6 +34,7 @@ export async function POST(req: Request) {
     (await cookies()).set({
       name: "code",
       value: serialisedEncryptedCode,
+      maxAge: 60 * 60 * 24 * 365,
     });
 
     // Return a success response:
