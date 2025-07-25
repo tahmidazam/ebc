@@ -23,6 +23,16 @@ export function PWALink({
     );
   }
 
+  if (url.hostname === "www.instagram.com") {
+    const transformedHref = href.replace(/^https:/, "instagram:");
+
+    return (
+      <Link href={transformedHref} {...props}>
+        {children}
+      </Link>
+    );
+  }
+
   const transformedHref = `x-safari-${href}`;
 
   return (
