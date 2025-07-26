@@ -23,6 +23,7 @@ export function ProgressiveBlur() {
             key={index}
             className="absolute top-0 left-0 right-0 bottom-0"
             style={{
+              zIndex: index,
               backdropFilter: `blur(${blurValue}px)`,
               WebkitBackdropFilter: `blur(${blurValue}px)`,
               mask: gradient,
@@ -30,7 +31,7 @@ export function ProgressiveBlur() {
           ></div>
         );
       })}
-      <div className="absolute inset-0 bg-gradient-to-t from-transparent to-background/50 back"></div>
+      <div className="absolute inset-0 bg-gradient-to-t from-transparent to-background"></div>
     </div>
   );
 }
