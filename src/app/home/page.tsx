@@ -20,17 +20,7 @@ export default async function Home() {
         paddingTop: "calc(env(safe-area-inset-top) + 68px)",
       }}
     >
-      <ProgressiveBlur />
-      <Nav title="EBC Intranet" subtitle={role.title} />
-
-      <div
-        style={{
-          paddingLeft: "calc(env(safe-area-inset-left) + 4 * var(--spacing))",
-          paddingRight: "calc(env(safe-area-inset-right) + 4 * var(--spacing))",
-        }}
-      >
-        <h1 className="text-2xl font-semibold tracking-tight">EBC Intranet</h1>
-      </div>
+      <Nav title="EBC Intranet" />
 
       <div className="flex flex-col pb-4">
         <PinGrid collections={role.collections} />
