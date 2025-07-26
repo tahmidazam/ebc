@@ -1,6 +1,7 @@
 import { CollectionSection } from "@/components/collection-section";
 import { Nav } from "@/components/nav";
 import { PinGrid } from "@/components/pin-grid";
+import { ProgressiveBlur } from "@/components/progressive-blur";
 import { Separator } from "@/components/ui/separator";
 import { getRole } from "@/lib/get-role";
 import { redirect } from "next/navigation";
@@ -19,6 +20,7 @@ export default async function Home() {
         paddingTop: "calc(env(safe-area-inset-top) + 68px)",
       }}
     >
+      <ProgressiveBlur />
       <Nav title="EBC Intranet" subtitle={role.title} />
 
       <div
@@ -28,7 +30,6 @@ export default async function Home() {
         }}
       >
         <h1 className="text-2xl font-semibold tracking-tight">EBC Intranet</h1>
-        <p className="text-muted-foreground">{role.title}</p>
       </div>
 
       <div className="flex flex-col pb-4">
